@@ -48,6 +48,11 @@ export default defineComponent({
   <div class="custom-select">
     <button ref="button" class="custom-select__btn" @click="opened = true">
       {{ chosen }}
+      <img
+        class="custom-select__arrow"
+        src="../assets/img/arrow-down.svg"
+        :class="{ _active: opened }"
+      />
     </button>
     <ul class="custom-select__options" v-show="opened">
       <li
