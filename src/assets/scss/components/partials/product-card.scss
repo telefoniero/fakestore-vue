@@ -1,0 +1,54 @@
+.product-card {
+  position: relative;
+  &__img-cont {
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.04), rgba(0, 0, 0, 0.04));
+    margin-bottom: 15px;
+    min-height: 400px;
+    position: relative;
+    img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      max-width: 100%;
+      max-height: 100%;
+      transform: translate(-50%, -50%) scale(0.7);
+    }
+  }
+
+  &__discount {
+    background-color: $additionalColor;
+    color: $secondaryColor;
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    padding: 12px 20px;
+    z-index: 2;
+  }
+
+  &__title {
+    margin-bottom: 5px;
+  }
+
+  &__price {
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+
+  &__btn {
+    color: $secondaryColor;
+    background: $primaryBgColor;
+    margin-top: auto;
+  }
+}
+.product-price {
+  display: flex;
+  align-items: center;
+  &__discounted {
+    margin-right: 10px;
+  }
+
+  &__old {
+    color: #b7b7b7;
+    text-decoration: line-through;
+  }
+}

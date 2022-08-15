@@ -1,0 +1,17 @@
+.filters {
+  &__flex-cont {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 20px;
+    align-items: end;
+  }
+
+  &__filter {
+  }
+
+  &__btn {
+    text-align: center;
+    color: $secondaryColor;
+    background: $primaryBgColor;
+  }
+}

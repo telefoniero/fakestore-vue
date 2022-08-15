@@ -1,0 +1,35 @@
+.header {
+  &__container {
+    padding: 35px 0;
+    border-bottom: 1px solid #bdbdbd;
+  }
+  &__logo {
+    min-width: calc(#{$gridWidth} + 20px);
+  }
+  margin-bottom: 80px;
+}
+.nav {
+  &__list {
+    display: flex;
+    align-items: center;
+  }
+
+  &__item {
+    font-size: 18px;
+    margin-right: 40px;
+
+    &:nth-child(2) {
+      margin-right: auto;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+    &._active {
+      color: $additionalColor;
+    }
+  }
+
+  &__link {
+    color: inherit;
+  }
+}

@@ -1,0 +1,11 @@
+.filter {
+  &__label {
+    display: block;
+    margin-bottom: 20px;
+    font-size: 18px;
+  }
+
+  &__select {
+    width: 100%;
+  }
+}
