@@ -1,6 +1,7 @@
 import IProduct from '@/interfaces/models/product'
 import { State } from '@vue/runtime-core'
 import { MutationTree } from 'vuex'
+import ProductsStorage from './storage'
 
 const mutations = <MutationTree<State>>{
   INIT(state, products) {
@@ -16,11 +17,16 @@ const mutations = <MutationTree<State>>{
     state.categories = categories
     state.sales = sales
   },
+  GET_BASKET(state) {
+    state.basket = ProductsStorage.getItems()
+  },
   ADD_PRODUCT(state, id) {
     const product: IProduct | undefined = state.products.find(
       product => product.id == id
     )
-    if (product) state.basket = [...state.basket, product]
+    if (product) {
+      state.basket = [...state.basket, product]
+    }
   },
   REMOVE_PRODUCT(state, id) {
     state.basket = state.basket.filter(product => product.id !== id)

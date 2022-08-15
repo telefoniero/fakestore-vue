@@ -1,6 +1,6 @@
 <script lang="ts">
 import IProduct from '@/interfaces/models/product'
-import { defineComponent, PropType } from 'vue'
+import { computed, defineComponent, PropType } from 'vue'
 import { useStore } from '@/store/store'
 
 export default defineComponent({
@@ -15,8 +15,15 @@ export default defineComponent({
     function remove(event: Event) {
       store.dispatch('remove', product.id)
     }
+
+    const price = computed<number>(() =>
+      product.discount
+        ? +(product.price * (1 - product.discount)).toFixed(2)
+        : product.price
+    )
     return {
-      remove
+      remove,
+      price
     }
   }
 })
