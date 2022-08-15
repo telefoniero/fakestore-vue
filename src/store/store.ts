@@ -1,19 +1,29 @@
 import { InjectionKey } from 'vue'
 import { createStore, useStore as baseUseStore, Store } from 'vuex'
+import { State } from '@vue/runtime-core'
 
-export interface State {
-  count: number
-}
+import actions from './actions'
+import mutations from './mutations'
+import getters from './getters'
 
 export const key: InjectionKey<Store<State>> = Symbol()
 
 export const store = createStore<State>({
   state: {
-    count: 0
-  }
+    products: [],
+    filteredProducts: [],
+    basket: [],
+    sales: new Set(),
+    categories: new Set(),
+    filters: {}
+  },
+  actions,
+  mutations,
+  getters
 })
 
-// define your own `useStore` composition function
+store.dispatch('init')
+
 export function useStore() {
   return baseUseStore(key)
 }

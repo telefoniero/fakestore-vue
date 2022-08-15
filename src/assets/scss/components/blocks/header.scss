@@ -18,6 +18,11 @@
     font-size: 18px;
     margin-right: 40px;
 
+    &._foregrounded {
+      position: relative;
+      z-index: 6;
+    }
+
     &:nth-child(2) {
       margin-right: auto;
     }
@@ -30,6 +35,13 @@
   }
 
   &__link {
+    border: none;
     color: inherit;
+    background: none;
+    font-size: inherit;
+    transition: 0.5s;
+    &._active {
+      color: $additionalColor;
+    }
   }
 }

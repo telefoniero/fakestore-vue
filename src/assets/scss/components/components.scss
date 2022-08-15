@@ -2,9 +2,12 @@
 @import './partials/logo.scss';
 @import './partials/filter.scss';
 @import './partials/product-card.scss';
+@import './partials/basket-card.scss';
+@import './partials/custom-select.scss';
 
 // blocks
 @import './blocks/header.scss';
 @import './blocks/filters.scss';
 @import './blocks/footer.scss';
-@import './blocks/products.scss'
+@import './blocks/products.scss';
+@import './blocks/basket.scss';

@@ -1,4 +1,5 @@
 <script lang="ts">
+import { useStore } from '@/store/store'
 import { defineComponent } from 'vue'
 
 export default defineComponent({
@@ -6,6 +7,30 @@ export default defineComponent({
     label: {
       required: true,
       type: String
+    },
+    options: {
+      required: true,
+      type: Set
+    },
+    filterKey: {
+      required: true,
+      type: String
+    }
+  },
+  computed: {
+    selectOptions() {
+      return Array.from(this.$props.options ?? [])
+    }
+  },
+  setup({ filterKey }) {
+    const store = useStore()
+    function setFilter(value: string) {
+      console.log(value)
+      store.dispatch('setFilter', { filterKey, value })
+    }
+
+    return {
+      setFilter
     }
   }
 })
@@ -14,6 +39,6 @@ export default defineComponent({
 <template>
   <div class="filter">
     <label :for="label" class="filter__label">{{ label }}</label>
-    <select class="filter__select control" :name="label" :id="label"></select>
+    <slot :label="label" :options="selectOptions" :onInput="setFilter" />
   </div>
 </template>

@@ -1,6 +1,7 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
-import IProduct from '@/models/product'
+import IProduct from '@/interfaces/models/product'
+import { useStore } from '@/store/store'
 
 export default defineComponent({
   props: {
@@ -10,15 +11,24 @@ export default defineComponent({
     }
   },
   setup({ product }) {
-    if (product.discount) {
-      const discountedPrice = computed<number>(
-        () => +(product.price * (1 - product.discount)).toFixed(2)
-      )
+    const store = useStore()
+    const isAdded = computed<boolean>(() => store.getters.isAdded(product.id))
 
-      const discount = computed<string>(() => `-${product.discount * 100}%`)
-
-      return { discountedPrice, discount }
+    function addProduct() {
+      store.dispatch('add', product.id)
     }
+
+    const discountedPrice = computed<number>(() =>
+      product.discount
+        ? +(product.price * (1 - product.discount)).toFixed(2)
+        : 0
+    )
+
+    const discount = computed<string>(() =>
+      product.discount ? `-${product.discount * 100}%` : ''
+    )
+
+    return { discountedPrice, discount, isAdded, addProduct }
   }
 })
 </script>
@@ -33,13 +43,19 @@ export default defineComponent({
     </div>
     <h3 class="product-card__title">{{ product.title }}</h3>
     <p class="product-card__price product-price">
-      <span class="product-price__discounted">${{ product.price }}</span>
+      <span class="product-price__discounted"
+        >${{ discountedPrice ? discountedPrice : product.price }}</span
+      >
       <span class="product-price__old" v-if="discountedPrice"
-        >${{ discountedPrice }}</span
+        >${{ product.price }}</span
       >
     </p>
-    <button class="product-card__btn control">
-      <template v-if="true">
+    <button
+      class="product-card__btn control"
+      :class="{ _added: isAdded }"
+      @click="addProduct"
+    >
+      <template v-if="!isAdded">
         Add to basket
         <img src="../assets/img/plus.svg" alt="" />
       </template>

@@ -13,13 +13,15 @@ import Header from './components/Header.vue'
 import Footer from './components/Footer.vue'
 import Filters from './components/Filters.vue'
 import Products from './components/Products.vue'
+import BasketModal from './components/BasketModal.vue'
 
 @Options({
   components: {
     Header,
     Footer,
     Filters,
-    Products
+    Products,
+    BasketModal
   }
 })
 export default class App extends Vue {}

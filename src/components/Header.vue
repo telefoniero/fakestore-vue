@@ -1,11 +1,24 @@
 <script lang="ts">
-import { defineComponent } from 'vue'
+import { computed, defineComponent, ref, Teleport } from 'vue'
 import Logo from '@/components/Logo.vue'
+import BasketModal from '@/components/BasketModal.vue'
+import { useStore } from '@/store/store'
 
 export default defineComponent({
-  setup() {},
+  setup() {
+    const store = useStore()
+    const added = computed<number>(() => store.getters.added)
+
+    const basketIsOpened = ref<boolean>(false)
+
+    return {
+      added,
+      basketIsOpened
+    }
+  },
   components: {
-    Logo
+    Logo,
+    BasketModal
   }
 })
 </script>
@@ -22,14 +35,26 @@ export default defineComponent({
           <li class="nav__item _active">
             <a href="#" class="nav__link">Catalog</a>
           </li>
-          <li class="nav__item">
+          <li class="nav__item _foregrounded">
             <a href="#" class="nav__link">Profile</a>
           </li>
-          <li class="nav__item">
-            <a href="#" class="nav__link">Basket(2)</a>
+          <li class="nav__item _foregrounded">
+            <button
+              class="nav__link"
+              @click="basketIsOpened = true"
+              :class="{ _active: basketIsOpened }"
+            >
+              Basket({{ added }})
+            </button>
           </li>
         </ul>
       </nav>
     </div>
   </header>
+  <Teleport to="body">
+    <BasketModal
+      @hide="basketIsOpened = false"
+      :class="{ _active: basketIsOpened }"
+    />
+  </Teleport>
 </template>

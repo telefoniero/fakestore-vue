@@ -1,0 +1,147 @@
+.basket {
+  transition: 0.5s;
+  visibility: hidden;
+  opacity: 0;
+  z-index: 5;
+  &__note {
+    font-weight: 500;
+    font-size: 24px;
+    padding: 1em 0;
+    text-align: center;
+  }
+  &._active {
+    opacity: 1;
+    visibility: visible;
+    .basket__container {
+      transform: translate(0);
+    }
+  }
+  &__container {
+    padding: 0 40px;
+    color: inherit;
+    transition: 0.5s;
+    transform: translate(100%);
+  }
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  &__content {
+    border-top: 1px solid #bdbdbd;
+  }
+
+  &__frame {
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding-top: 92px;
+    background-color: #fff;
+    width: 455px;
+  }
+
+  &__btn {
+    color: $secondaryColor;
+    background-color: $primaryBgColor;
+    border: 0;
+    padding: 30px 40px;
+    width: 100%;
+    font-size: 20px;
+    position: relative;
+    text-align: left;
+    span {
+      color: inherit;
+    }
+    img {
+      position: absolute;
+      right: 100px;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
+
+  &__title {
+    text-transform: uppercase;
+    font-size: 24px;
+    margin: 20px 0 30px 0;
+  }
+
+  &__total {
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__products {
+    padding: 40px 0;
+  }
+
+  &__options {
+    margin-bottom: 40px;
+  }
+}
+.basket-options {
+  &__item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+.basket-option {
+  &__name {
+    font-size: 16px;
+    font-weight: 400;
+  }
+
+  &__value {
+    font-weight: 500;
+    &_remove {
+      position: relative;
+      border: none;
+      background: none;
+      font-size: inherit;
+      &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 100%;
+        height: 1px;
+        width: 100%;
+        background-color: $primaryColor;
+      }
+    }
+  }
+}
+.basket-total {
+  border-top: 1px solid #bdbdbd;
+  border-bottom: 1px solid #bdbdbd;
+  font-size: 20px;
+  font-weight: 500;
+  &__title {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  &__value {
+    font-size: inherit;
+    font-weight: inherit;
+  }
+}
+.basket-products {
+  &__card {
+    display: flex;
+    align-content: stretch;
+  }
+  &__item {
+    margin-bottom: 40px;
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}

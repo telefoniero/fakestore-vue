@@ -7,3 +7,40 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.custom-input {
+  position: relative;
+  &__input {
+    width: 100%;
+    display: block;
+    background: transparent;
+    font-size: inherit;
+  }
+}
+
+.cross-btn {
+  position: absolute;
+  border: none;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  background-color: transparent;
+  width: 10px;
+  height: 10px;
+  &__line {
+    position: absolute;
+    width: 1px;
+    height: 8px;
+    background-color: $primaryColor;
+    top: 50%;
+    left: 50%;
+    transform-origin: center center;
+    &_1 {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+
+    &_2 {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+  }
+}

@@ -1,12 +1,17 @@
+import IProduct from '@/interfaces/models/product'
 import { Store } from 'vuex'
 
+
 declare module '@vue/runtime-core' {
-  // declare your own store states
   interface State {
-    count: number
+    products: IProduct[]
+    basket: IProduct[]
+    categories: Set<string>
+    sales: Set<string>
+    filteredProducts: IProduct[]
+    filters: IStringObject
   }
 
-  // provide typings for `this.$store`
   interface ComponentCustomProperties {
     $store: Store<State>
   }
