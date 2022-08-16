@@ -9,9 +9,10 @@ const actions = <ActionTree<State, any>>{
     commit('INIT', products)
     commit('GET_BASKET')
   },
-  add({ commit }, id) {
+  add({ commit, state }, id) {
     commit('ADD_PRODUCT', id)
-    ProductsStorage.addItem(id)
+    const product = state.products.find(product => product.id == id)
+    if (product) ProductsStorage.addItem(product)
   },
   remove({ commit }, id) {
     commit('REMOVE_PRODUCT', id)
