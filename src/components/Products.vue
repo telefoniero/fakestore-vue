@@ -41,7 +41,7 @@ export default defineComponent({
           </li>
         </ul>
       </template>
-      <h2 class="products__title">Change your filters!</h2>
+      <h2 v-else class="products__title">Change your filters!</h2>
     </div>
   </div>
 </template>
