@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { computed, defineComponent, reactive } from 'vue'
 import Filter from '@/components/Filter.vue'
 import { useStore } from '@/store/store'
 import CustomInput from './CustomInput.vue'
@@ -12,15 +12,18 @@ export default defineComponent({
 
     const categories = computed<Set<string>>(() => store.state.categories)
     const sales = computed<Set<string>>(() => store.state.sales)
+    const filters = reactive({})
 
     function filterProducts(event: Event) {
+      store.dispatch('setFilters', filters)
       store.dispatch('filterProducts')
     }
 
     return {
       categories,
       sales,
-      filterProducts
+      filterProducts,
+      filters
     }
   }
 })
@@ -30,26 +33,24 @@ export default defineComponent({
   <div class="filters">
     <div class="container">
       <div class="filters__flex-cont">
-        <Filter
-          class="filter__filter"
-          label="Search"
-          filterKey="query"
-          v-slot="{onInput}"
-        >
-          <CustomInput class="filter__control" :onInput="onInput" />
+        <Filter class="filter__filter" label="Search" filterKey="query">
+          <CustomInput
+            class="filter__control"
+            @input="filters.query = $event"
+          />
         </Filter>
         <Filter
           class="filters__filter"
           label="Product category"
           :options="categories"
           filterKey="category"
-          v-slot="{ label, options, onInput }"
+          v-slot="{ label, options }"
         >
           <CustomSelect
             class="filter__control control"
             :label="label"
             :options="options"
-            :onInput="onInput"
+            @input="filters.category = $event"
           />
         </Filter>
         <Filter
@@ -57,13 +58,13 @@ export default defineComponent({
           label="Sale"
           :options="sales"
           filterKey="sale"
-          v-slot="{ label, options, onInput }"
+          v-slot="{ label, options }"
         >
           <CustomSelect
             class="filter__control control"
             :label="label"
             :options="options"
-            :onInput="onInput"
+            @input="filters.sale = $event"
           />
         </Filter>
         <button class="filters__btn control" @click="filterProducts">

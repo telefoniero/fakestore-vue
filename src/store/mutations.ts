@@ -34,9 +34,8 @@ const mutations = <MutationTree<State>>{
   REMOVE_ALL_PRODUCTS(state) {
     state.basket = []
   },
-  SET_FILTER(state, filterData) {
-    const { filterKey, value } = filterData
-    state.filters = { ...state.filters, [filterKey]: value }
+  SET_FILTERS(state, filtersData) {
+    state.filters = filtersData
   },
   SET_FILTERED_PRODUCTS(state) {
     const filters = state.filters

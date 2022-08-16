@@ -15,7 +15,8 @@ export const store = createStore<State>({
     basket: [],
     sales: new Set(),
     categories: new Set(),
-    filters: {}
+    filters: {},
+    // filtered: false
   },
   actions,
   mutations,

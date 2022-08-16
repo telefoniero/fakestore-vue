@@ -21,8 +21,8 @@ const actions = <ActionTree<State, any>>{
     commit('REMOVE_ALL_PRODUCTS')
     ProductsStorage.removeItems()
   },
-  setFilter({ commit }, filterData) {
-    commit('SET_FILTER', filterData)
+  setFilters({ commit }, filtersData) {
+    commit('SET_FILTERS', filtersData)
   },
   filterProducts({ commit }) {
     commit('SET_FILTERED_PRODUCTS')

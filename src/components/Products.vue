@@ -9,15 +9,15 @@ export default defineComponent({
     ProductCard
   },
   setup() {
-    const category = ref<string>('Bestsellers')
-
     const store = useStore()
     const filteredProducts = computed<IProduct[]>(
       () => store.state.filteredProducts
     )
 
+    const sale = computed<string>(() => store.state.filters.sale)
+
     return {
-      category,
+      sale,
       filteredProducts
     }
   }
@@ -27,7 +27,9 @@ export default defineComponent({
 <template>
   <div class="products">
     <div class="container">
-      <h2 class="products__title">{{ category }}</h2>
+      <h2 class="products__title" v-if="sale">
+        {{ sale }}:<br />{{ filteredProducts.length }}
+      </h2>
       <ul class="products__list products-list">
         <li
           class="products-list__item"

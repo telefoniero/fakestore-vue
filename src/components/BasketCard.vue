@@ -12,6 +12,7 @@ export default defineComponent({
   },
   setup({ product }) {
     const store = useStore()
+
     function remove(event: Event) {
       store.dispatch('remove', product.id)
     }
