@@ -27,18 +27,21 @@ export default defineComponent({
 <template>
   <div class="products">
     <div class="container">
-      <h2 class="products__title" v-if="sale">
-        {{ sale }}:<br />{{ filteredProducts.length }}
-      </h2>
-      <ul class="products__list products-list">
-        <li
-          class="products-list__item"
-          v-for="product in filteredProducts"
-          :key="product.id"
-        >
-          <ProductCard class="products__product" :product="product" />
-        </li>
-      </ul>
+      <template v-if="filteredProducts.length">
+        <h2 class="products__title" v-if="sale">
+          {{ sale }}:<br />{{ filteredProducts.length }}
+        </h2>
+        <ul class="products__list products-list">
+          <li
+            class="products-list__item"
+            v-for="product in filteredProducts"
+            :key="product.id"
+          >
+            <ProductCard class="products__product" :product="product" />
+          </li>
+        </ul>
+      </template>
+      <h2 class="products__title">Change your filters!</h2>
     </div>
   </div>
 </template>
